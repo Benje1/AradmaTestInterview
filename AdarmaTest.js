@@ -1,4 +1,12 @@
+const readline = require('readline')
+
 function TicTacToe(){
+
+  const r1 = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
     let board = [["-","-","-"],["-","-","-"],["-","-","-"]];
 
     let winner = "-";
