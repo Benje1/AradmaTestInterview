@@ -46,6 +46,7 @@ function TicTacToe(){
     
     function winningCondition(){
       for(let i = 0; i < boardLength; i++){
+        winningCount = 0
         for(let j = 0; j < boardLength-1; j++){
           if(board[i][j] === board[i][j+1] && board[i][j] !== "-"){
             winningCount += 1;
@@ -58,6 +59,7 @@ function TicTacToe(){
       }
       winningCount = 0
       for(let i = 0; i < boardLength; i++){
+        winningCount = 0
         for(let j = 0; j < boardLength-1; j++){
           if(board[j][i] === board[j+1][i] && board[j][i] !== "-"){
             winningCount += 1;
