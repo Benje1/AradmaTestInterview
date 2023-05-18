@@ -7,6 +7,8 @@ function TicTacToe(){
     output: process.stdout
   });
 
+  let currentPlayer = "X"
+
     let board = [["-","-","-"],["-","-","-"],["-","-","-"]];
 
     let winner = "-";
@@ -14,6 +16,14 @@ function TicTacToe(){
   
     let cricle = "O";
     let cross = "X";
+
+    function changePlayer(){
+      if(currentPlayer === "X"){
+        currentPlayer = "O"
+      } else {
+        currentPlayer = "X"
+      }
+    }
 
     function spaceCheck(indexA, indexB){
         if(board[indexA][indexB] === "-"){
@@ -26,6 +36,9 @@ function TicTacToe(){
     function makeAMove(indexA, indexB, symbole){
       if(spaceCheck(indexA,indexB)){
         board[indexA][indexB] = symbole;
+        return true
+      } else {
+        return false
       }
     }
     
@@ -81,75 +94,48 @@ function TicTacToe(){
       board = [["-","-","-"],["-","-","-"],["-","-","-"]]
     }
 
+    function displayBoard(){
+      for(let i = 0; i < board.length; i++){
+        console.log(board[i])
+      }
+    }
+
     function declareWinner(){
       console.log("Winner is " + winner)
     }
 
-    // makeAMove(0,0, cricle)
-    // makeAMove(0,1, cricle)
-    // makeAMove(0,2, cricle)
-    // winningCondition()
-    // if(winner !== "-"){
-    //   declareWinner()
-    // }
-    // for(let i =0; i <= 2; i++){
-    //   console.log(board[i])
-    // }
-    // clearBoard()
-    // makeAMove(0,0, cricle)
-    // makeAMove(1,0, cricle)
-    // makeAMove(2,0, cricle)
-    // winningCondition()
-    // if(winner !== "-"){
-    //   declareWinner()
-    // }
-    // for(let i =0; i <= 2; i++){
-    //   console.log(board[i])
-    // }
-    // clearBoard()
-    // makeAMove(0,0, cricle)
-    // makeAMove(1,1, cricle)
-    // makeAMove(2,2, cricle)
-    // winningCondition()
-    // if(winner !== "-"){
-    //   declareWinner()
-    // }
-    // for(let i =0; i <= 2; i++){
-    //   console.log(board[i])
-    // }
-    // clearBoard()
-    // makeAMove(0,0, cross)
-    // makeAMove(1,1, cricle)
-    // makeAMove(2,2, cross)
-    // makeAMove(0,1, cricle)
-    // makeAMove(2,1, cross)
-    // makeAMove(2,0, cricle)
-    // makeAMove(0,2, cross)
-    // makeAMove(1,2, cricle)
-    // makeAMove(1,0, cross)
-    // winningCondition()
-    // if(winner !== "-"){
-    //   declareWinner()
-    // }
-    // for(let i =0; i <= 2; i++){
-    //   console.log(board[i])
-    // }
-    // clearBoard()
-    
-    makeAMove(0,0, cross)
-    makeAMove(0,2, cricle)
-    makeAMove(2,2, cross)
-    makeAMove(1,1, cricle)
-    makeAMove(2,0, cross)
-    makeAMove(0,1, cricle)
-    makeAMove(2,1, cross)
-    winningCondition()
-    if(winner !== "-"){
-      declareWinner()
+    function playerInput(){
+      r1.question("Enter row placement (0-2): ", function(row){
+        r1.question("Enter column placement (0-2): ", function(column){
+          const moveMade = makeAMove(parseInt(row), parseInt(column), currentPlayer)
+          if(moveMade){
+
+            winningCondition()
+            displayBoard()
+            
+            if(winner !== "-"){
+              declareWinner()
+              r1.close()
+            } else {
+              changePlayer()
+              playerInput()
+            }
+          } else {
+            console.log("Invalid move. Please select an empty space.");
+          playerInput(); // Ask the same player for input again
+          }
+        })
+      })
     }
-    for(let i =0; i <= 2; i++){
-      console.log(board[i])
-    }
+
+    // winningCondition()
+    // if(winner !== "-"){
+    //   declareWinner()
+    // }
+    // for(let i =0; i <= 2; i++){
+    //   console.log(board[i])
+    // }
+    playerInput()
     clearBoard()
 
 }
