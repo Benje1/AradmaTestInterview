@@ -132,13 +132,6 @@ function TicTacToe(){
       })
     }
 
-    // winningCondition()
-    // if(winner !== "-"){
-    //   declareWinner()
-    // }
-    // for(let i =0; i <= 2; i++){
-    //   console.log(board[i])
-    // }
     playerInput()
     clearBoard()
 
