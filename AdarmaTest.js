@@ -17,6 +17,8 @@ function TicTacToe(){
     let cricle = "O";
     let cross = "X";
 
+    let boardLength = board.length
+
     function changePlayer(){
       if(currentPlayer === "X"){
         currentPlayer = "O"
@@ -43,8 +45,8 @@ function TicTacToe(){
     }
     
     function winningCondition(){
-      for(let i = 0; i < 3; i++){
-        for(let j = 0; j < 2; j++){
+      for(let i = 0; i < boardLength; i++){
+        for(let j = 0; j < boardLength-1; j++){
           if(board[i][j] === board[i][j+1] && board[i][j] !== "-"){
             winningCount += 1;
             if(winningCount === 2){
@@ -55,8 +57,8 @@ function TicTacToe(){
         }
       }
       winningCount = 0
-      for(let i = 0; i < 3; i++){
-        for(let j = 0; j < 2; j++){
+      for(let i = 0; i < boardLength; i++){
+        for(let j = 0; j < boardLength-1; j++){
           if(board[j][i] === board[j+1][i] && board[j][i] !== "-"){
             winningCount += 1;
             if(winningCount === 2){
@@ -67,7 +69,7 @@ function TicTacToe(){
         }
       }
       winningCount = 0
-      for(let i = 0; i < 2; i++){
+      for(let i = 0; i < boardLength - 1; i++){
         if(board[i][i] === board[i+1][i+1] && board[i][i] !== "-"){
           winningCount += 1;
           if(winningCount === 2){
@@ -77,7 +79,7 @@ function TicTacToe(){
         }
       }
       winningCount = 0
-      for(let i = 0; i< 2; i++){
+      for(let i = 0; i< boardLength -1; i++){
         let index = board.length - i - 1;
         if(board[index][i] === board[index - 1][i]){
           winningCount += 1;
