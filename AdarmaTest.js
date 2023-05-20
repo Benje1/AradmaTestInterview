@@ -83,7 +83,7 @@ function TicTacToe(){
       winningCount = 0
       for(let i = 0; i< boardLength -1; i++){
         let index = board.length - i - 1;
-        if(board[index][i] === board[index - 1][i]){
+        if(board[index][i] === board[index - 1][i+1]){
           winningCount += 1;
           if(winningCount === 2){
             winner = board[index][i];
